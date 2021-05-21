@@ -90,7 +90,8 @@ public class PravegaBenchmarkDriver implements BenchmarkDriver {
 
     @Override
     public CompletableFuture<Void> createTopic(String topic, int partitions) {
-        topic = cleanName(topic);
+        //topic = cleanName(topic);
+        topic = "openmessaging-benchmark-1";
         log.info("createTopic: topic={}, partitions={}", topic, partitions);
         synchronized (createdTopics) {
             createdTopics.add(topic);
@@ -114,7 +115,8 @@ public class PravegaBenchmarkDriver implements BenchmarkDriver {
 
     @Override
     public CompletableFuture<BenchmarkProducer> createProducer(String topic) {
-        topic = cleanName(topic);
+        //topic = cleanName(topic);
+        topic = "openmessaging-benchmark-1";
         BenchmarkProducer producer = null;
         if (config.enableTransaction) {
             producer = new PravegaBenchmarkTransactionProducer(topic, clientFactory, config.includeTimestampInEvent,
@@ -129,7 +131,8 @@ public class PravegaBenchmarkDriver implements BenchmarkDriver {
     @Override
     public CompletableFuture<BenchmarkConsumer> createConsumer(String topic, String subscriptionName,
             ConsumerCallback consumerCallback) {
-        topic = cleanName(topic);
+        //topic = cleanName(topic);
+        topic = "openmessaging-benchmark-1";
         subscriptionName = cleanName(subscriptionName);
         BenchmarkConsumer consumer = new PravegaBenchmarkConsumer(topic, scopeName, subscriptionName, consumerCallback,
                 clientFactory, readerGroupManager, config.includeTimestampInEvent);
